@@ -16,3 +16,5 @@ export const GET_BOOKSTORE = 'GET_BOOKSTORE'
 export const ADD_EDIT_BOOK = 'ADD_EDIT_BOOK'
 export const LOAD_EDIT_BOOK = 'LOAD_EDIT_BOOK'
 export const UPDATE_EDIT_BOOK = 'UPDATE_EDIT_BOOK'
+
+export const GET_ACCOUNT = "GET_ACCOUNT"

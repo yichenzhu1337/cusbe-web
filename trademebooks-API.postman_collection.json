@@ -1,0 +1,1734 @@
+{
+  "info": {
+    "_postman_id": "cfc68f86-7c0d-4962-bdfe-a084cfa881d6",
+    "name": "trademebooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "GET Auth Account Settings",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/account",
+              "host": ["{{baseurl}}"],
+              "path": ["account"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Account Settings",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"receiveEmail\": false,\n    \"receiveSms\": false,\n    \"school\": \"University of Toronto\",\n    \"location\": \"Toronto, Ontario, Canada\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/account",
+              "host": ["{{baseurl}}"],
+              "path": ["account"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Settings",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"bobby123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/account/auth-user",
+              "host": ["{{baseurl}}"],
+              "path": ["account", "auth-user"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"first_name\": \"John\",\n\t\"last_name\": \"Smith\",\n\t\"email\": \"john111ohn112.com\",\n\t\"username\": \"johnnyboy123111112\",\n\t\"password\": \"john123\",\n\t\"password_confirmation\": \"john1231\"\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/auth/register",
+              "host": ["{{baseurl}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Signs up a user up with their desired information."
+          },
+          "response": [
+            {
+              "name": "Register - Failed - validation errors",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"first_name\": \"John\",\n\t\"last_name\": \"Smith\",\n\t\"email\": \"john111ohn112.com\",\n\t\"username\": \"johnnyboy123111112\",\n\t\"password\": \"john123\",\n\t\"password_confirmation\": \"john1231\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseurl}}/auth/register",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "register"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "192"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c0-NEQ2jlixLc++7aLo1FstbJ2cI3g\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:52:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"failed\",\n    \"code\": 400,\n    \"message\": \"There were errors with the validation\",\n    \"data\": {},\n    \"errors\": [\n        \"The email format is invalid.\",\n        \"The password confirmation and password fields must match.\"\n    ]\n}"
+            },
+            {
+              "name": "Register - Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"first_name\": \"John\",\n\t\"last_name\": \"Smith\",\n\t\"email\": \"john111@john112.com\",\n\t\"username\": \"johnnyboy123111112\",\n\t\"password\": \"john123\",\n\t\"password_confirmation\": \"john123\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseurl}}/auth/register",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "register"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "640"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"280-buMdGFa+tHR4KHz28Ho50pQxtK8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:50:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"The email: john111@john112.com has successfully registered.\",\n    \"data\": {\n        \"createdUser\": {\n            \"_id\": \"5fcc7f4b79d8cd00930e947b\",\n            \"first_name\": \"John\",\n            \"last_name\": \"Smith\",\n            \"email\": \"john111@john112.com\",\n            \"username\": \"johnnyboy123111112\",\n            \"password\": \"john123\",\n            \"createdAt\": \"2020-12-06T06:50:51.296Z\",\n            \"__v\": 0\n        },\n        \"account\": {\n            \"receiveEmail\": true,\n            \"receiveSms\": true,\n            \"school\": \"\",\n            \"location\": \"\",\n            \"_id\": \"5fcc7f4b79d8cd00930e947d\",\n            \"userId\": \"5fcc7f4b79d8cd00930e947b\",\n            \"__v\": 0\n        },\n        \"bookstore\": {\n            \"description\": \"\",\n            \"_id\": \"5fcc7f4b79d8cd00930e947c\",\n            \"userId\": \"5fcc7f4b79d8cd00930e947b\",\n            \"date\": \"2020-12-06T06:50:51.305Z\",\n            \"__v\": 0\n        }\n    },\n    \"errors\": null\n}"
+            },
+            {
+              "name": "Register - Failed - Email already taken",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"first_name\": \"John\",\n\t\"last_name\": \"Smith\",\n\t\"email\": \"john111@john112.com\",\n\t\"username\": \"johnnyboy123111112\",\n\t\"password\": \"john123\",\n\t\"password_confirmation\": \"john123\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseurl}}/auth/register",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "register"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "223"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"df-iaZnzF3mzQNHzQtlywbWWSbfGmw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:51:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"failed\",\n    \"code\": 400,\n    \"message\": \"E11000 duplicate key error collection: trademebooks_dev_db.users index: username_1 dup key: { username: \\\"johnnyboy123111112\\\" }\",\n    \"data\": {},\n    \"errors\": [\n        \"This email is already taken.\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"cedric@cedric.com\",\n    \"password\": \"cedric\"\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/auth/login",
+              "host": ["{{baseurl}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Logins the user in if their credentials are correct in the database."
+          },
+          "response": [
+            {
+              "name": "Login - Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"yichenzhu1337@gmail.com\",\n    \"password\": \"yichen\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseurl}}/auth/login",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "259"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"103-XJy9m87m6M5MhAOIwkLQIp2rRf8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:48:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"The user has successfully logged in.\",\n    \"data\": {\n        \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n        \"first_name\": \"Yi Chen\",\n        \"last_name\": \"Zhu\",\n        \"username\": \"yichen\",\n        \"email\": \"yichenzhu1337@gmail.com\",\n        \"phone_number\": \"4162932500\"\n    },\n    \"errors\": null\n}"
+            },
+            {
+              "name": "Login - Failed - Invalid Credentials",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"yichenzhu1337@gmail.com\",\n    \"password\": \"yichen\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseurl}}/auth/login",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "259"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"103-XJy9m87m6M5MhAOIwkLQIp2rRf8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:48:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"failed\",\n    \"code\": 400,\n    \"message\": \"Something went wrong...\",\n    \"data\": {},\n    \"errors\": [\n        \"Invalid credentials, please try a different email and password combination.\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/auth/logout",
+              "host": ["{{baseurl}}"],
+              "path": ["auth", "logout"]
+            },
+            "description": "Logs the user out of the current session."
+          },
+          "response": [
+            {
+              "name": "Logout - Generic",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseurl}}/auth/logout",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "logout"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "105"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"69-S6WS0ap8EYRlrLz9P2ZQGwaxabY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:48:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"The user has successfully logged out.\",\n    \"data\": {},\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Current Auth User",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "x-auth-token",
+                "value": "{{jwt}}",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"user_id\": \"1\",\n\t\"first_name\": \"John\",\n\t\"last_name\": \"Doe\",\n\t\"username\": \"johnnyjoejericho\",\n\t\"email\": \"johnny@email.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/auth/user",
+              "host": ["{{baseurl}}"],
+              "path": ["auth", "user"]
+            },
+            "description": "Gets the currently authenticated user information."
+          },
+          "response": [
+            {
+              "name": "Get Current Auth User - Unauthenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-auth-token",
+                    "value": "{{jwt}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"user_id\": \"1\",\n\t\"first_name\": \"John\",\n\t\"last_name\": \"Doe\",\n\t\"username\": \"johnnyjoejericho\",\n\t\"email\": \"johnny@email.com\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseurl}}/auth/user",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "user"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "270"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"10e-SY4Oae71dOVFqeKXmc1RcWzZXCw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:31:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"failed\",\n    \"code\": 401,\n    \"message\": \"Access denied: you must be logged in to access this API endpoint.\",\n    \"data\": {},\n    \"errors\": [\n        \"You must be logged in.\"\n    ]\n}"
+            },
+            {
+              "name": "Get Current Auth User - Authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-auth-token",
+                    "value": "{{jwt}}",
+                    "type": "text"
+                  },
+                  {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"user_id\": \"1\",\n\t\"first_name\": \"John\",\n\t\"last_name\": \"Doe\",\n\t\"username\": \"johnnyjoejericho\",\n\t\"email\": \"johnny@email.com\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseurl}}/auth/user",
+                  "host": ["{{baseurl}}"],
+                  "path": ["auth", "user"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "270"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"10e-SY4Oae71dOVFqeKXmc1RcWzZXCw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 06 Dec 2020 06:31:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"The currently authenticated user's information.\",\n    \"data\": {\n        \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n        \"first_name\": \"Yi Chen\",\n        \"last_name\": \"Zhu\",\n        \"username\": \"yichen\",\n        \"email\": \"yichenzhu1337@gmail.com\",\n        \"phone_number\": \"4162932500\"\n    },\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Password",
+      "item": [
+        {
+          "name": "Password - Send Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"email\": \"yichenzhu1337@gmail.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/auth/password/send-email",
+              "host": ["{{baseurl}}"],
+              "path": ["auth", "password", "send-email"]
+            },
+            "description": "Logins the user in if their credentials are correct in the database."
+          },
+          "response": [
+            {
+              "name": "Login - Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"yichen@yichen.com\",\n\t\"password\": \"password\"\n}"
+                },
+                "url": {
+                  "raw": "localhost:8088/login",
+                  "host": ["localhost"],
+                  "port": "8088",
+                  "path": ["login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5aWNoZW5AeWljaGVuLmNvbSIsImV4cCI6MTU1ODA3MDYyNn0.jla6Iw2BZozRXGgqUbzV5JqzIfGh5bWm5uMNtfu6qk3rzpchH7NO-uQEKXLINdykEwBJ9sP7AhzoJyXaniGvFQ"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 May 2019 05:23:47 GMT"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Password - Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"email\": \"yichenzhu1337@gmail.com\",\n    \"token\": \"9c5b7e97aea12f94a1526e51838542341\",\n    \"newPassword\": \"asdasd\"\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/auth/password/reset",
+              "host": ["{{baseurl}}"],
+              "path": ["auth", "password", "reset"]
+            },
+            "description": "Logins the user in if their credentials are correct in the database."
+          },
+          "response": [
+            {
+              "name": "Login - Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"yichen@yichen.com\",\n\t\"password\": \"password\"\n}"
+                },
+                "url": {
+                  "raw": "localhost:8088/login",
+                  "host": ["localhost"],
+                  "port": "8088",
+                  "path": ["login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "plain",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5aWNoZW5AeWljaGVuLmNvbSIsImV4cCI6MTU1ODA3MDYyNn0.jla6Iw2BZozRXGgqUbzV5JqzIfGh5bWm5uMNtfu6qk3rzpchH7NO-uQEKXLINdykEwBJ9sP7AhzoJyXaniGvFQ"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "1; mode=block"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 May 2019 05:23:47 GMT"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Book",
+      "item": [
+        {
+          "name": "Get all books",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"message\": \"list of all books in the database.\",\n    \"data\": [\n\t\t{\n\t\t\t\"title\": \"The Castle in the Attic\",\n\t\t\t\"price\": \"Julius Cesar\",\n\t\t\t\"authors\": [\n\t\t\t\t\"John Doe\",\n\t\t\t\t\"Mary Jane\",\n\t\t\t\t\"Jane Doe\"\n\t\t\t],\n\t\t\t\"edition\": \"1st ed\"\n    \t},\n\t\t{\n\t\t\t\"title\": \"Julie of the Wolves\",\n\t\t\t\"price\": \"Julius Cesar\",\n\t\t\t\"authors\": [\n\t\t\t\t\"John Doe\",\n\t\t\t\t\"Mary Jane\",\n\t\t\t\t\"Jane Doe\"\n\t\t\t],\n\t\t\t\"edition\": \"1st ed\"\n    \t},\n\t\t{\n\t\t\t\"title\": \"Harry Potter and the Half Blood Prince\",\n\t\t\t\"price\": \"Julius Cesar\",\n\t\t\t\"authors\": [\n\t\t\t\t\"John Doe\",\n\t\t\t\t\"Mary Jane\",\n\t\t\t\t\"Jane Doe\"\n\t\t\t],\n\t\t\t\"edition\": \"1st ed\"\n    \t}\n    ],\n    \"errors\": null\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/books?limit=30",
+              "host": ["{{baseurl}}"],
+              "path": ["books"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "30"
+                }
+              ]
+            },
+            "description": "Gets a collection of all books in the database."
+          },
+          "response": [
+            {
+              "name": "Get all books",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseurl}}/books",
+                  "host": ["{{baseurl}}"],
+                  "path": ["books"]
+                }
+              },
+              "_postman_previewlanguage": "Text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "Get all books - query search by title",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseurl}}/books?title=calculus",
+                  "host": ["{{baseurl}}"],
+                  "path": ["books"],
+                  "query": [
+                    {
+                      "key": "title",
+                      "value": "calculus"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "Text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "Get all books",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseurl}}/books/all",
+                  "host": ["{{baseurl}}"],
+                  "path": ["books", "all"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"message\": \"error, book with that id is not found\",\n    \"data\": [\n\t\t{\n\t\t\t\"title\": \"The Castle in the Attic\",\n\t\t\t\"price\": \"Julius Cesar\",\n\t\t\t\"authors\": [\n\t\t\t\t\"John Doe\",\n\t\t\t\t\"Mary Jane\",\n\t\t\t\t\"Jane Doe\"\n\t\t\t],\n\t\t\t\"edition\": \"1st ed\"\n    \t},\n\t\t{\n\t\t\t\"title\": \"Julie of the Wolves\",\n\t\t\t\"price\": \"Julius Cesar\",\n\t\t\t\"authors\": [\n\t\t\t\t\"John Doe\",\n\t\t\t\t\"Mary Jane\",\n\t\t\t\t\"Jane Doe\"\n\t\t\t],\n\t\t\t\"edition\": \"1st ed\"\n    \t},\n\t\t{\n\t\t\t\"title\": \"Harry Potter and the Half Blood Prince\",\n\t\t\t\"price\": \"Julius Cesar\",\n\t\t\t\"authors\": [\n\t\t\t\t\"John Doe\",\n\t\t\t\t\"Mary Jane\",\n\t\t\t\t\"Jane Doe\"\n\t\t\t],\n\t\t\t\"edition\": \"1st ed\"\n    \t}\n    ],\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get a book by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/books/5fcb3a0b2090b488b562669a",
+              "host": ["{{baseurl}}"],
+              "path": ["books", "5fcb3a0b2090b488b562669a"]
+            },
+            "description": "Gets one book in the database by id if it exists."
+          },
+          "response": [
+            {
+              "name": "get one book success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseurl}}/books/1",
+                  "host": ["{{baseurl}}"],
+                  "path": ["books", "1"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n\t\"message\": \"This is the id of the book you requested.\",\n\t\"data\": {\n\t\t\"title\": \"The Castle in the Attic\",\n\t\t\"price\": \"100\",\n\t\t\"authors\": [\n\t\t\t\"John Doe\",\n\t\t\t\"Mary Jane\",\n\t\t\t\"Jane Doe\"\n\t\t],\n\t\t\"edition\": \"1\",\n\t\t\"book_cover_image\": \"//cdn.trademebooks.com/images/book1-image.png\",\n\t\t\"description\": \"This is the best book you will ever read. Please buy it from me!\"\n\t},\n\t\"errors\": null\n}"
+            },
+            {
+              "name": "get a single book failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseurl}}/books/1",
+                  "host": ["{{baseurl}}"],
+                  "path": ["books", "1"]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"message\": \"error, book with that id is not found\",\n    \"data\": null,\n    \"errors\": [\n    \t\"The book does not exist\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create a book listing",
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "",
+                "type": "text",
+                "value": "",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"title\": \"Test Book #1\",\r\n\t\"description\": \"This book is awesome, buy it\",\r\n\t\"authors\": [\"JK Rowling\", \"JK's Husbhand\", \"Harry Himself\"],\r\n\t\"condition\": \"Good\",\r\n\t\"location\": \"UofT\",\r\n\t\"price\": 199,\r\n\t\"image\": \"https://images-na.ssl-images-amazon.com/images/I/51KEJAS5ABL._AC_SY445_.jpg\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/books",
+              "host": ["{{baseurl}}"],
+              "path": ["books"]
+            },
+            "description": "Creates a new book and adds it into the database."
+          },
+          "response": [
+            {
+              "name": "Create a book",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"title\": \"Introduction to Computer Programming II\",\n\t\t\"authors\": [\n\t\t\"John Doe\",\n\t\t\"Mary Jane\",\n\t\t\"Jane Doe\"\n\t],\n\n\t\"isbn_10\": \"1234567890\",\n\t\"isbn_13\": \"1234567890123\",\n\t\n\t\"edition\": \"1\",\n\t\n\t\"condition\": \"new\",\n\t\"book_cover_image\": \"//asssets.trademebooks.com/images/book1-image.png\",\n\t\"courses\": [\n\t\t\"CSCA48\",\n\t\t\"CSCA67\"\n\t],\n\t\"price\": \"100\",\n\t\"description\": \"This is the best book you will ever read. Please buy it from me!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseurl}}/books",
+                  "host": ["{{baseurl}}"],
+                  "path": ["books"]
+                }
+              },
+              "_postman_previewlanguage": "Text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "Update a book",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{jwt}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Test Book #3\",\n    \"description\": \"This book is awesome, buy it - updated 2\",\n    \"condition\": \"GOOD\",\n    \"location\": \"UofT - 2\",\n    \"price\": 200\n}"
+            },
+            "url": {
+              "raw": "{{baseurl}}/books/5fcb3a0b2090b488b562669a",
+              "host": ["{{baseurl}}"],
+              "path": ["books", "5fcb3a0b2090b488b562669a"]
+            },
+            "description": "Updates a book with new information."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a book",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{jwt}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseurl}}/books/5fcb3a0b2090b488b562669a",
+              "host": ["{{baseurl}}"],
+              "path": ["books", "5fcb3a0b2090b488b562669a"],
+              "query": [
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Deletes a book in the database by id."
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookstore (Profile)",
+      "item": [
+        {
+          "name": "Get a user's bookstore by username",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseurl}}/bookstores/yichen",
+              "host": ["{{baseurl}}"],
+              "path": ["bookstores", "yichen"]
+            },
+            "description": "this will get a bookstore"
+          },
+          "response": [
+            {
+              "name": "Get a user's bookstore by username - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{baseurl}}/bookstores/yichen",
+                  "host": ["{{baseurl}}"],
+                  "path": ["bookstores", "yichen"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2330"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"91a-XSCqz7a4YnFJyZ2PxbMjKExAP1k\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Sep 2020 21:19:30 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Bookstore with the specified username.\",\n    \"data\": {\n        \"_id\": \"5f6a27449c39120f2b5909d2\",\n        \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n        \"description\": \"welcome to my bookstore! - Yichen\",\n        \"date\": \"2020-09-22T16:33:08.497Z\",\n        \"__v\": 0,\n        \"books\": [\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cb\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"title\": \"Book #2 - Water\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909ca\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #1 - Air\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.434Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909ce\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #5 - Legend of Korra\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cd\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #4 - Fire\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cc\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #3 - Earth\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cf\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #1 - Air\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.436Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909d0\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #1 - Air\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.436Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            }\n        ]\n    },\n    \"errors\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get a current auth user's bookstores and books",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseurl}}/bookstores/auth",
+              "host": ["{{baseurl}}"],
+              "path": ["bookstores", "auth"]
+            },
+            "description": "this will get a bookstore"
+          },
+          "response": [
+            {
+              "name": "Get a user's bookstore by username - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{baseurl}}/bookstores/yichen",
+                  "host": ["{{baseurl}}"],
+                  "path": ["bookstores", "yichen"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2330"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"91a-XSCqz7a4YnFJyZ2PxbMjKExAP1k\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 22 Sep 2020 21:19:30 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Bookstore with the specified username.\",\n    \"data\": {\n        \"_id\": \"5f6a27449c39120f2b5909d2\",\n        \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n        \"description\": \"welcome to my bookstore! - Yichen\",\n        \"date\": \"2020-09-22T16:33:08.497Z\",\n        \"__v\": 0,\n        \"books\": [\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cb\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"title\": \"Book #2 - Water\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909ca\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #1 - Air\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.434Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909ce\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #5 - Legend of Korra\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cd\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #4 - Fire\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cc\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #3 - Earth\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.435Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909cf\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #1 - Air\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.436Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5f6a27449c39120f2b5909d0\",\n                \"authors\": [\n                    \"John Doe\",\n                    \"Jane Doe\",\n                    \"Henry The 3rd\"\n                ],\n                \"title\": \"Book #1 - Air\",\n                \"description\": \"This is a great description fo the book.\",\n                \"location\": \"UofT\",\n                \"price\": 100,\n                \"edition\": 1,\n                \"createdAt\": \"2020-09-22T16:33:08.436Z\",\n                \"userId\": \"5e11e9d8eded1d23742c1c6d\",\n                \"__v\": 0\n            }\n        ]\n    },\n    \"errors\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "getGlobalMessages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseurl}}/messages/global",
+              "host": ["{{baseurl}}"],
+              "path": ["messages", "global"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "postGlobalMessages",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"body\": \"this is a test message\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/messages/global",
+              "host": ["{{baseurl}}"],
+              "path": ["messages", "global"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getConversations",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/messages/conversations",
+              "host": ["{{baseurl}}"],
+              "path": ["messages", "conversations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getConversationsQuery",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/messages/conversations/query?userId=5e11e9d8eded1d23742c1c6a",
+              "host": ["{{baseurl}}"],
+              "path": ["messages", "conversations", "query"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "5e11e9d8eded1d23742c1c6a"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "cedric to yichen - auth user is cedric",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseurl}}/messages/conversations/query?userId=5e11e9d8eded1d23742c1c6a",
+                  "host": ["{{baseurl}}"],
+                  "path": ["messages", "conversations", "query"],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5e11e9d8eded1d23742c1c6a"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3273"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cc9-A65wRd69CtNIAV6YO9iqxDoLnqA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 16 Dec 2020 06:51:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9fc\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6a\",\n        \"to\": \"5e11e9d8eded1d23742c1c6b\",\n        \"body\": \"hey\",\n        \"date\": \"1608062571984\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9fd\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6a\",\n        \"to\": \"5e11e9d8eded1d23742c1c6b\",\n        \"body\": \"Do you want to grab lunch?\",\n        \"date\": \"1608062571993\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9fe\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6a\",\n        \"to\": \"5e11e9d8eded1d23742c1c6b\",\n        \"body\": \"I was thinking sushi buffet, what do you think?\",\n        \"date\": \"1608062571995\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9ff\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6b\",\n        \"to\": \"5e11e9d8eded1d23742c1c6a\",\n        \"body\": \"Oh hey Yichen!\",\n        \"date\": \"1608062571997\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809da00\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6b\",\n        \"to\": \"5e11e9d8eded1d23742c1c6a\",\n        \"body\": \"Sure let's do it!\",\n        \"date\": \"1608062571999\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ]\n    }\n]"
+            },
+            {
+              "name": "from yichen to cedric - auth user is yichen",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseurl}}/messages/conversations/query?userId=5e11e9d8eded1d23742c1c6b",
+                  "host": ["{{baseurl}}"],
+                  "path": ["messages", "conversations", "query"],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5e11e9d8eded1d23742c1c6b"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3273"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cc9-A65wRd69CtNIAV6YO9iqxDoLnqA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 16 Dec 2020 06:05:02 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9fc\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6a\",\n        \"to\": \"5e11e9d8eded1d23742c1c6b\",\n        \"body\": \"hey\",\n        \"date\": \"1608062571984\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9fd\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6a\",\n        \"to\": \"5e11e9d8eded1d23742c1c6b\",\n        \"body\": \"Do you want to grab lunch?\",\n        \"date\": \"1608062571993\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9fe\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6a\",\n        \"to\": \"5e11e9d8eded1d23742c1c6b\",\n        \"body\": \"I was thinking sushi buffet, what do you think?\",\n        \"date\": \"1608062571995\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809d9ff\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6b\",\n        \"to\": \"5e11e9d8eded1d23742c1c6a\",\n        \"body\": \"Oh hey Yichen!\",\n        \"date\": \"1608062571997\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ]\n    },\n    {\n        \"_id\": \"5fd9166be5b6560a9809da00\",\n        \"conversation\": \"5fc36879a0d3010d607eaade\",\n        \"from\": \"5e11e9d8eded1d23742c1c6b\",\n        \"to\": \"5e11e9d8eded1d23742c1c6a\",\n        \"body\": \"Sure let's do it!\",\n        \"date\": \"1608062571999\",\n        \"__v\": 0,\n        \"toObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6a\",\n                \"first_name\": \"Yi Chen\",\n                \"last_name\": \"Zhu\",\n                \"username\": \"yichen\",\n                \"email\": \"yichenzhu1337@gmail.com\",\n                \"phone_number\": \"4162932500\",\n                \"google_id\": \"110603409234402153901\",\n                \"createdAt\": \"2020-12-15T20:02:51.495Z\"\n            }\n        ],\n        \"fromObj\": [\n            {\n                \"_id\": \"5e11e9d8eded1d23742c1c6b\",\n                \"first_name\": \"Cedric\",\n                \"last_name\": \"Mosdell\",\n                \"username\": \"cedric\",\n                \"email\": \"cedric@cedric.com\",\n                \"phone_number\": \"4162932502\",\n                \"createdAt\": \"2020-12-15T20:02:51.564Z\"\n            }\n        ]\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "postSendPrivateMessage",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"to\": \"5e11e9d8eded1d23742c1c6b\",\n    \"body\": \"this is a message from yichen to cedric! 2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/messages",
+              "host": ["{{baseurl}}"],
+              "path": ["messages"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "putUpdateConveration",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"to\": \"5e11e9d8eded1d23742c1c6b\",\n    \"lastMessageIsRead\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/messages/conversations/5fd9c833c22f0d3a70e1d0c4",
+              "host": ["{{baseurl}}"],
+              "path": ["messages", "conversations", "5fd9c833c22f0d3a70e1d0c4"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUsers",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"to\": \"5e11e9d8eded1d23742c1c6b\",\n    \"body\": \"this is a message from yichen to cedric! 2\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/utils/users",
+              "host": ["{{baseurl}}"],
+              "path": ["utils", "users"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Utilities",
+      "item": [
+        {
+          "name": "404 Not Found Page",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"username\": \"yichen1\",\n\t\"password\": \"yichen1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/some-random-404-page",
+              "host": ["{{baseurl}}"],
+              "path": ["some-random-404-page"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Application Health Check",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "type": "text",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"username\": \"yichen1\",\n\t\"password\": \"yichen1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/utils/health",
+              "host": ["{{baseurl}}"],
+              "path": ["utils", "health"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Contact Us Email",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"toEmail\": \"yichenzhu1337@gmail.com\",\n  \"body\": \"Hi There!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseurl}}/utils/contact",
+              "host": ["{{baseurl}}"],
+              "path": ["utils", "contact"]
+            }
+          },
+          "response": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ]
+}

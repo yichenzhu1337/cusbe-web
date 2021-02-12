@@ -34,7 +34,9 @@ describe('Component: AccountBookstoreForm', () => {
   })
 
   it('should render properly', async () => {
-    const { getAllByRole, getByText, getAllByText } = render(<AccountBookstoreForm {...props} />)
+    const { getAllByRole, getByText, getAllByText } = render(
+      <AccountBookstoreForm {...props} />
+    )
 
     getByText('Bookstore Settings')
     getByText('Change Username')
@@ -50,7 +52,7 @@ describe('Component: AccountBookstoreForm', () => {
   })
 
   // fireEvent
-  it("should save the changes - buttons 1 and 2", async () => {
+  it('should save the changes - buttons 1 and 2', async () => {
     const { getAllByText } = render(<AccountBookstoreForm {...props} />)
 
     const saveChangesButton1 = getAllByText('Save Changes')[0]

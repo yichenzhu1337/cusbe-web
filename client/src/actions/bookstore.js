@@ -5,7 +5,8 @@ import {
   GET_BOOKSTORE,
   ADD_EDIT_BOOK,
   LOAD_EDIT_BOOK,
-  UPDATE_EDIT_BOOK
+  UPDATE_EDIT_BOOK,
+  GET_ACCOUNT
 } from './types'
 
 // API: Get a bookstore with its description and all its books
@@ -30,6 +31,33 @@ export const getBookstoreByUsername = (username) => async (dispatch) => {
       dispatch({
         type: GET_BOOKSTORE,
         payload: bookstoreBooks.books
+      })
+    }
+  } catch (error) {
+    displayErrors(error)
+  }
+}
+
+export const getAccountByUsername = (username) => async (dispatch) => {
+  console.log("HI")
+  try {
+    if (username === 'auth') {
+      const bookstoreAccount = (await api.get(`/bookstores/${username}`)).data
+        .data
+
+      dispatch({
+        type: GET_ACCOUNT,
+        payload: bookstoreAccount
+      })
+    } else {
+      const bookstoreAccount = (await api.get(`/bookstores/${username}`)).data
+        .data
+
+      console.log('bookstoreAccount action: ', bookstoreAccount)
+
+      dispatch({
+        type: GET_ACCOUNT,
+        payload: bookstoreAccount
       })
     }
   } catch (error) {

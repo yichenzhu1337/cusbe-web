@@ -15,8 +15,8 @@ const updateById = async (userId, data) => {
 }
 
 const getAccountByUsername = async (username, data) => {
-  const user = await userModel.findOne({username}, data)
-  const account = await accountModel.findOne({_id: user._id})
+  const user = await userModel.findOne({ username }, data)
+  const account = await accountModel.findOne({ _id: user._id })
   return account
 }
 
